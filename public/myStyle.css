@@ -1,0 +1,11 @@
+nav .nav-wrapper{
+    background-color: #257af9;
+}
+.pagination li.active a {
+    color: #fff;
+    background-color: #257af9;
+}
+
+.page-footer {
+    background-color: #257af9;
+}
