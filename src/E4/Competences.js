@@ -114,7 +114,7 @@ class Competences extends Component{
                                             <div style={{whiteSpace: 'pre'}}>{(Illust.Illustration.description)}</div>
                                             <Collapsible popout >
                                                 <CollapsibleItem header={" Extrait du projet : "+ Illust.Illustration.Projet.nom} >
-                                                    <p><b>Contexte :</b> {Illust.Illustration.Projet.contexte}</p>
+                                                    <p style={{whiteSpace: 'pre'}}><b>Contexte :</b> {Illust.Illustration.Projet.contexte}</p>
                                                     <p style={{whiteSpace: 'pre'}}><b>Description : </b>{Illust.Illustration.Projet.description}</p>
                                                 </CollapsibleItem>
                                             </Collapsible>

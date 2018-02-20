@@ -23,13 +23,17 @@ class E4 extends Component{
             _activites: [],
             selected:null,
             codeActivite:null,
+            projets:[],
         }
     }
     componentWillMount(){
         this.fetchActivites();
-
+        this.fetchProjet();
     }
 
+    /***
+     * Chargement des activités
+     */
     fetchActivites(){
         fetch("https://abeauquel.ovh/api_pfolio/activites",{
             method:'GET',
@@ -54,6 +58,42 @@ class E4 extends Component{
 
                 });
                 console.log("Mes activités sont chargé dans E4");
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    /***
+     * Chargement des projets
+     */
+    fetchProjet(){
+        fetch("http://abeauquel.ovh/api_pfolio/projets",{
+            method:'GET',
+            header:{
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'APIKey':'12345',
+            },
+        })
+            .then((response)=>{
+                if(!response.ok){
+                    this.setState({
+                        errorMessage:response.statusText,
+                    });
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then(json => {
+                console.log(json);
+
+                this.setState({
+                    projets: json,
+
+                })
+
+
             })
             .catch((error) => {
                 console.log(error)
@@ -97,6 +137,7 @@ class E4 extends Component{
                                 changeValue={this.changeValue.bind(this)}
                                 codeActivite={this.state.codeActivite}
                                 _activites={this.state._activites}
+                                projets={this.state.projets}
                             />
 
                         </Card>

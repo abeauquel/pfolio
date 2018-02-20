@@ -1,6 +1,6 @@
 import React, {Component, ReactDOM} from 'react';
 
-import { Collection, Pagination, Row, Col, Input, ProgressBar, Badge, CollectionItem} from 'react-materialize';
+import { Collection, Pagination, Row, Col, Input, ProgressBar, Badge, CollectionItem, Icon} from 'react-materialize';
 import {
     Route,
     Link
@@ -18,16 +18,20 @@ class Activites extends Component {
             activites: [],
             selected:null,
 
+
             /* Pagination */
             page: 1,
             nbAct: 10,
             nbPage: 5,
+
+            /* Trie*/
             acquiseOnly:false,
+            IDprojetSelected:-1,
+            wordSearchBar:"",
         }
     }
     componentWillMount(){
         this.loadActivite(this.props._activites);
-
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.page !== this.state.page) {
@@ -38,12 +42,41 @@ class Activites extends Component {
         }
     }
 
+    /***
+     * Trie sur ma liste d'activités
+     * @param array_activites
+     */
     loadActivite(array_activites){
-        let activites = array_activites;
+        let activites = lodash.filter(array_activites, (activite, index)=>{
+            let projetFound=true;
+
+            if(this.state.acquiseOnly && activite.nbCompetencesAcquises < 1) {
+                return false;
+            }
+
+            if(this.state.wordSearchBar !== "" && !(activite.code.toLowerCase().includes(this.state.wordSearchBar) || activite.libelle.toLowerCase().includes(this.state.wordSearchBar))){
+                return false;
+            }
+
+            if(this.state.IDprojetSelected >0){
+                projetFound=false;
+                activite.competences.map((competence)=>{
+                    return competence.Illustrer.map((illustrer)=>{
+                        if(illustrer.Illustration.Projet.id === this.state.IDprojetSelected){
+                            projetFound=true;
+                            return true;
+                        }
+                    })
+                })
+            }
+
+            return projetFound
+        });
 
         this.setState({
             activites:activites,
-            nbPage: Math.round(activites.length / this.state.nbAct,+1)
+            nbPage: Math.round(activites.length / this.state.nbAct,+1),
+            page:1,
         })
     }
 
@@ -54,29 +87,33 @@ class Activites extends Component {
         })
     }
 
-    searchBar(event){
-        let compare=event.target.value.toLowerCase();
-        let activites = lodash.filter( this.props._activites, (activite)=>{
-            if(activite.code.toLowerCase().includes(compare)){
-                return true;
-            }
-            return activite.libelle.toLowerCase().includes(compare)
-
-        });
+    handleSearchBar(event){
 
         this.setState({
-            activites:activites,
-            nbPage: Math.round(activites.length / this.state.nbAct,+1),
-            page:1,
+            wordSearchBar:event.target.value.toLowerCase(),
+        },()=>{
+            this.loadActivite(this.props._activites);
         })
     }
 
-    checkAcquise(){
+    handleCheckAcquises(){
         this.setState({
             acquiseOnly:!this.state.acquiseOnly,
+        },()=>{
+            this.loadActivite(this.props._activites);
         })
 
     }
+
+    handleSelectProjet(event){
+        this.setState({
+            IDprojetSelected:event.target.value,
+        },()=>{
+            this.loadActivite(this.props._activites);
+        })
+
+    }
+
     render(){
 
         return(
@@ -85,15 +122,26 @@ class Activites extends Component {
                     <div className={'nav-wrapper '+Appearances.backgroundColor}>
                         <form>
                             <div className="input-field">
-                                <input ref="search" type="search" onChange={(e)=>this.searchBar(e)} required/>
-                                <label className="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <input ref="search" type="search" onChange={(e)=>this.handleSearchBar(e)} required/>
+                                <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                             </div>
                         </form>
                     </div>
                 </nav>
 
                 <Row>
-                    <Input name='group1' className={'red'} type='checkbox' label='Compétences acquises seulement' onChange={()=>this.checkAcquise()}/>
+
+                    <Input s={5} name='group1' className={'red'} type='checkbox' label='Compétences avec preuve seulement' onChange={()=>this.handleCheckAcquises()}/>
+
+
+                    <Input s={7} type='select' label='Par projet' icon='computer'  onChange={(e)=>this.handleSelectProjet(e)}>
+                        <option ></option>
+                        {this.props.projets.map((projet)=>{
+                            return (
+                                <option key={projet.id} value={projet.id}>{projet.nom} <Icon left>weekend</Icon></option>
+                            )
+                        })}
+                    </Input>
                 </Row>
 
                 {this.state.activites.length ?
@@ -114,24 +162,20 @@ class Activites extends Component {
                 <Collection ref={this.state.activites.length}>
 
                     {this.state.activites.map((activite,index)=>{
-                        if(index>=(this.state.page*this.state.nbAct)-this.state.nbAct && index<(this.state.page*this.state.nbAct) && ((this.state.acquiseOnly && activite.nbCompetencesAcquises>0) || (!this.state.acquiseOnly))){
-                           /* return (<Link key={activite.code}
-                                         to={'/E4/Activites'}
-                                         className={'collection-item' + (this.props.codeActivite ? (this.props.codeActivite === activite.code ? ' active':'') : '')}
-                                         onClick={()=>this.props.changeValue('codeActivite',activite.code)}>
-                                <b>{activite.code}</b>{activite.libelle}
-                                    {activite.nbCompetencesAcquises >0 ? <Badge className={'new'}>{activite.nbCompetencesAcquises} comp</Badge>:''}
-                            </Link>)
-*/
+                        if(index>=(this.state.page*this.state.nbAct)-this.state.nbAct && index<(this.state.page*this.state.nbAct) ){
 
-                            return (<CollectionItem href={'#'}
-                                                   active={this.props.codeActivite ? (this.props.codeActivite === activite.code ? true: false) :false}
-                                                    onClick={()=>this.props.changeValue('codeActivite',activite.code)}>
-                                <b>{activite.code}</b>{activite.libelle}
-                                 <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} comp</Badge>
-                            </CollectionItem>)
+                            return (<CollectionItem
+                                        key={activite.code} href={'#'}
+                                        active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
+                                        onClick={()=>this.props.changeValue('codeActivite',activite.code)}
+                                    >
+                                        <b>{activite.code}</b>{activite.libelle}
+                                        {activite.nbCompetencesAcquises > 0 ?
+                                            <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} preuve{activite.nbCompetencesAcquises >1 ? "s":null}</Badge>
+                                        :null}
+                                    </CollectionItem>)
 
-                        }return <div></div>
+                        }return <div key={activite.code}> {" "}</div>
 
                     })
                     }

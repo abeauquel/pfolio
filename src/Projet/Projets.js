@@ -64,9 +64,6 @@ class Projets extends Component{
         return(
             <Row>
 
-                <ToastNotification
-                    message={"Mes projets sont la!!"}
-                />
                 <Card  className={'col s4'} >
                     <h3>Mes projets</h3>
                     <hr/>
@@ -100,7 +97,7 @@ class Projets extends Component{
                             <p>{this.state.selected.contexte}</p>
                             <hr/>
                             <h6><b>Description : </b></h6>
-                            <p>{this.state.selected.description}</p>
+                            <p style={{whiteSpace: 'pre'}}>{this.state.selected.description}</p>
                         </Card>
                     :<p>Sélectionnez un projet</p>}
                 </Col>

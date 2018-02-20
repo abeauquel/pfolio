@@ -3,7 +3,9 @@ import {Container, Table}from 'react-materialize'
 
 class Home extends Component{
     componentWillMount () {
+/*
         window.Materialize.toast('Welcome !!!', 4000)
+*/
     }
 
     render(){
