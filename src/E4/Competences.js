@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Collapsible, CollapsibleItem, Pagination, Row, Col, Card, CardTitle, MenuItem, ProgressBar} from 'react-materialize';
-import retourLigne from '../Script/FunctionRetourLigne';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 let $ = require("jquery")(window);
@@ -30,7 +29,7 @@ class Competences extends Component{
   }
 
     fetchCompetences(){
-        fetch("http://abeauquel.ovh/api_pfolio/competences",{
+        fetch("https://abeauquel.ovh/api_pfolio/competences",{
             method:'GET',
             header:{
                 'Accept':'application/json',
@@ -115,8 +114,8 @@ class Competences extends Component{
                                             <div style={{whiteSpace: 'pre'}}>{(Illust.Illustration.description)}</div>
                                             <Collapsible popout >
                                                 <CollapsibleItem header={" Extrait du projet : "+ Illust.Illustration.Projet.nom} >
-                                                    <p>Contexte : {Illust.Illustration.Projet.contexte}</p>
-                                                    <p style={{whiteSpace: 'pre'}}>Description : {Illust.Illustration.Projet.description}</p>
+                                                    <p><b>Contexte :</b> {Illust.Illustration.Projet.contexte}</p>
+                                                    <p style={{whiteSpace: 'pre'}}><b>Description : </b>{Illust.Illustration.Projet.description}</p>
                                                 </CollapsibleItem>
                                             </Collapsible>
                                         </CollapsibleItem>

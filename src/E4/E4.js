@@ -31,7 +31,7 @@ class E4 extends Component{
     }
 
     fetchActivites(){
-        fetch("http://abeauquel.ovh/api_pfolio/activites",{
+        fetch("https://abeauquel.ovh/api_pfolio/activites",{
             method:'GET',
             header:{
                 'Accept':'application/json',

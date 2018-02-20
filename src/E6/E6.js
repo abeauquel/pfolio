@@ -7,23 +7,9 @@ class E6 extends Component{
         return(
             
             <Container>
-                <h1>Bien routé dans E4</h1>
+                <h3>Bien routé dans E6</h3>
 
-                <p>GDFJKGIODJGIODFJGIODFJG</p>
-                <Row>
-                    <Col s={3}>
-                        <Toast toast="E4">Click pour un tooltip E4 !!</Toast></Col>
-                    <Col s={5} >
-                        <p>E4</p>
-                        <p>E4</p>
-                        <p>E4</p>
-                        <p>E4</p>
-                        <p>E4</p>
-                        <p>E4</p>
-                        <p>E4</p>
-
-                    </Col>
-                </Row>
+                <small>A venir</small>
             </Container>
 
         )}

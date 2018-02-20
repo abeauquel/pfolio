@@ -61,12 +61,12 @@ class Grille extends Component{
                             <small>Aucune activite</small>
                         </Col>
                     }
-                    <Table hoverable={true} centred={false} responsive={false} bordered={true}>
+                    <Table hoverable={true} centred={false} responsive={false} bordered={true} style={{border:'solid black 2px', borderCollapse:'collapse'}}>
                         <thead>
                         <tr >
                             <th data-field="id" style={{backgroundColor:'grey' }}><div className={'center-align'}><p>Situation</p> <p>professionnelle </p> <p>(intitulé et liste des </p> <p>documents et </p>production associés)</div></th>
                             {this.state.activites.map((activite, index)=>{
-                                return <th data-field="name"  style={{writingMode: 'sideways-lr'}}><div className={'left-align'}><b >{activite.code}</b> {activite.libelle}</div></th>
+                                return <th data-field="name"  style={{writingMode: 'sideways-lr', border:'solid black 2px', borderCollapse:'collapse'}}><div className={'left-align'}><b >{activite.code}</b> {activite.libelle}</div></th>
 
                             })}
 
@@ -74,31 +74,18 @@ class Grille extends Component{
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td >PROJET 1</td>
+                        <tr style={{border:'solid black 2px', borderCollapse:'collapse'}}>
+                            <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>Réaliser</td >
                             {this.state.activites.map((activite, index)=>{
-                                return <td><a href="#"><Icon>check</Icon></a></td>
+                                return <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>
+                                        {activite.nbCompetencesAcquises>0 ? <a href={'/E4/Activites/'+activite.code}><Icon>check</Icon></a> :null}
+                                </td>
 
 
                             })}
 
                         </tr>
-                        <tr>
-                            <td>PROJET 2</td>
-                            {this.state.activites.map((activite, index)=>{
-                                return <td><a href="#"><Icon>check</Icon></a></td>
 
-
-                            })}
-                        </tr>
-                        <tr>
-                            <td>PROJET 3</td>
-                            {this.state.activites.map((activite, index)=>{
-                                return <td><a href="#"><Icon>check</Icon></a></td>
-
-
-                            })}
-                        </tr>
                         </tbody>
                     </Table>
 
