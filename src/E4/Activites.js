@@ -107,6 +107,7 @@ class Activites extends Component {
 
     handleSelectProjet(event){
         this.setState({
+            acquiseOnly:event.target.value !== "",
             IDprojetSelected:event.target.value,
         },()=>{
             this.loadActivite(this.props._activites);
@@ -138,7 +139,7 @@ class Activites extends Component {
                         <option ></option>
                         {this.props.projets.map((projet)=>{
                             return (
-                                <option key={projet.id} value={projet.id}>{projet.nom} <Icon left>weekend</Icon></option>
+                                <option key={projet.id} value={projet.id}>{projet.nom}</option>
                             )
                         })}
                     </Input>
@@ -168,11 +169,14 @@ class Activites extends Component {
                                         key={activite.code} href={'#'}
                                         active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
                                         onClick={()=>this.props.changeValue('codeActivite',activite.code)}
-                                    >
-                                        <b>{activite.code}</b>{activite.libelle}
+                                    >   <Row>
+                                        <Col s={10}><b>{activite.code}</b>{activite.libelle}</Col>
+                                        <Col s={2}>
                                         {activite.nbCompetencesAcquises > 0 ?
                                             <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} preuve{activite.nbCompetencesAcquises >1 ? "s":null}</Badge>
                                         :null}
+                                         </Col>
+                                        </Row>
                                     </CollectionItem>)
 
                         }return <div key={activite.code}> {" "}</div>

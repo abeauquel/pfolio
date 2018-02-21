@@ -1,8 +1,47 @@
 import React, {Component} from 'react';
-import { Collapsible, CollapsibleItem, Pagination, Row, Col, Card, CardTitle, MenuItem, ProgressBar} from 'react-materialize';
+import { Collapsible, CollapsibleItem, Pagination, Row, Col, Card, CardTitle, MediaBox, ProgressBar} from 'react-materialize';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 let $ = require("jquery")(window);
+
+/***
+ * Récupérer l'index du server actuel
+ * @param lien
+ * @returns {string}
+ */
+const location =(lien)=>{
+    let loc=window.location.toString();
+    let serv="";
+    let http = new XMLHttpRequest();
+   /* if(loc.includes("http://localhost:3000")){
+        console.log("http://localhost:3000"+lien);
+        serv="http://localhost:3000";
+        let http = new XMLHttpRequest();
+
+        http.open('HEAD', serv+lien, false);
+        http.send();
+
+        return http.status !== 404;
+
+    }*/
+
+    for  (let i = 0; i < loc.length; i++) {
+        if(i>9 && loc[i]===! "/" ){
+            serv+=loc[i];
+        }else {
+
+
+            http.open('HEAD', serv+lien, false);
+            http.send();
+            return http.status !== 404;
+        }
+    }
+
+    http.open('HEAD', serv+lien, false);
+    http.send();
+
+    return http.status !== 404;
+}
 class Competences extends Component{
     constructor(props){
         super(props);
@@ -20,7 +59,6 @@ class Competences extends Component{
     }
 
     componentWillUpdate(nextProps, nextState){
-    console.log("update du composant COMPETENCE");
       if(nextProps.codeAct === this.props.codeAct){
           return;
       }
@@ -53,7 +91,6 @@ class Competences extends Component{
                     _competences: json,},()=>{this.loadCompetences(this.props.codeAct);
 
                 });
-                console.log("jai reload de l'API :"+this.state.competences);
             })
             .catch((error) => {
                 console.log(error)
@@ -61,14 +98,9 @@ class Competences extends Component{
     }
 
     loadCompetences(codeActivite){
-        console.log(this.state._competences);
         let competences =lodash.filter(this.state._competences,(comp)=> {
             return comp.activite === codeActivite
         });
-        console.log("MES COMPT :"+ competences);
-        competences.map((co)=>{
-            console.log(co.code)
-        })
 
         this.setState({
             competences: competences,
@@ -85,7 +117,7 @@ class Competences extends Component{
     render(){
 
         return(
-            <div key={this.props.codeAct}>
+            <Card key={this.props.codeAct} sty>
 
                 <blockquote  style={{borderLeftColor: Appearances.backgroundColor}}><h4 >Activite : {this.props.codeAct}</h4></blockquote>
 
@@ -99,19 +131,21 @@ class Competences extends Component{
 
                         <div key={comp.code}>
                             <Card>
-                            <h5><b>{comp.code}</b>{comp.libelle}</h5>
+                            <h5><b>{comp.code}</b>{comp.libelle}</h5> <br/>
 
                             {comp.Illustrer.length <1 ?
                                 <div><br/><small>Compétence non acquise</small></div>
                             :
                             comp.Illustrer.map((Illust, indexIllustrer)=>(
-                                <div key={comp.code+Illust.ordreAppartition}>
-
+                                <div key={comp.code+ " "+ Illust.ordreAppartition}>
+                                    <br/>
                                 <p>{Illust.description}</p>
-
                                     <Collapsible accordion >
                                         <CollapsibleItem header={"En lien avec : "+Illust.Illustration.titre} >
                                             <div style={{whiteSpace: 'pre'}}>{(Illust.Illustration.description)}</div>
+                                            {location("/img/illustration/illustration"+Illust.Illustration.id+".png") ?
+                                            <MediaBox src={"/img/illustration/illustration"+Illust.Illustration.id+".png"} caption={"screen réalisation sur " +Illust.Illustration.Projet.nom + " (illustre "+ comp.code + " )"} width="500"/>
+                                            :null}
                                             <Collapsible popout >
                                                 <CollapsibleItem header={" Extrait du projet : "+ Illust.Illustration.Projet.nom} >
                                                     <p style={{whiteSpace: 'pre'}}><b>Contexte :</b> {Illust.Illustration.Projet.contexte}</p>
@@ -130,7 +164,7 @@ class Competences extends Component{
                         </div>
                     ))
                     }
-            </div>
+            </Card>
 
         )
     }

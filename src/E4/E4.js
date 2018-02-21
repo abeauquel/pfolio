@@ -1,6 +1,6 @@
 import React, {Component, ReactDOM} from 'react';
 
-import { Collection, Pagination, Row, Col, Card, ProgressBar} from 'react-materialize';
+import {Row, Col, Card} from 'react-materialize';
 import {
     Route,
     withRouter,
@@ -146,12 +146,13 @@ class E4 extends Component{
                         <Col s={7} >
                             <h3 className={'center-align'}>Liste de compétences</h3>
                             <hr/>
+
                             {this.state.codeActivite ?
-                            <Competences
-                                changeValue={this.changeValue.bind(this)}
-                                codeAct={this.state.codeActivite}
-                            />
-                                :<blockquote style={{marginLeft:'3%'}}>Sélectionnez une activité</blockquote>}
+                                <Competences
+                                    changeValue={this.changeValue.bind(this)}
+                                    codeAct={this.state.codeActivite}
+                                />
+                            :<blockquote style={{marginLeft:'3%'}}>Sélectionnez une activité</blockquote>}
 
                         </Col>
 
