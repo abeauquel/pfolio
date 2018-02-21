@@ -170,8 +170,8 @@ class Activites extends Component {
                                         active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
                                         onClick={()=>this.props.changeValue('codeActivite',activite.code)}
                                     >   <Row>
-                                        <Col s={10}><b>{activite.code}</b>{activite.libelle}</Col>
-                                        <Col s={2}>
+                                        <Col s={9}><b>{activite.code}</b>{activite.libelle}</Col>
+                                        <Col s={3}>
                                         {activite.nbCompetencesAcquises > 0 ?
                                             <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} preuve{activite.nbCompetencesAcquises >1 ? "s":null}</Badge>
                                         :null}
