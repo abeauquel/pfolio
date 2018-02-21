@@ -68,7 +68,7 @@ class E4 extends Component{
      * Chargement des projets
      */
     fetchProjet(){
-        fetch("http://abeauquel.ovh/api_pfolio/projets",{
+        fetch("https://abeauquel.ovh/api_pfolio/projets",{
             method:'GET',
             header:{
                 'Accept':'application/json',
