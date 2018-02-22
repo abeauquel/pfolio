@@ -141,7 +141,8 @@ class Competences extends Component{
                                     <Collapsible accordion >
                                         <CollapsibleItem header={"En lien avec : "+Illust.Illustration.titre} >
                                             <div style={{whiteSpace: 'pre'}}>{(Illust.Illustration.description)}</div>
-                                            {location("/img/illustration/illustration"+Illust.Illustration.id+".png") ?
+                                            {console.log(Illust.Illustration.haveIMG)}
+                                            {Illust.Illustration.haveIMG === '1' ?
                                             <MediaBox src={"/img/illustration/illustration"+Illust.Illustration.id+".png"} caption={"screen réalisation sur " +Illust.Illustration.Projet.nom + " (illustre "+ comp.code + " )"} width="500"/>
                                             :null}
                                             <Collapsible popout >
