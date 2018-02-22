@@ -128,15 +128,14 @@ class Competences extends Component{
                     :
                     this.state.competences.map((comp,indexComp)=>(
 
-                        <div key={comp.code}>
-                            <Card>
+                            <Card key={comp.code}>
                             <h5><b>{comp.code}</b>{comp.libelle}</h5> <br/>
 
                             {comp.Illustrer.length <1 ?
                                 <div><br/><small>Compétence non acquise</small></div>
                             :
                             comp.Illustrer.map((Illust, indexIllustrer)=>(
-                                <div key={comp.code+ " "+ Illust.ordreAppartition}>
+                                <div key={indexIllustrer}>
                                     <br/>
                                 <p>{Illust.description}</p>
                                     <Collapsible accordion >
@@ -160,7 +159,7 @@ class Competences extends Component{
 
                             }
                             </Card>
-                        </div>
+
                     ))
                     }
             </Card>
