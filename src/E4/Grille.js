@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Collection, Autocomplete, Table, Row, Col, Icon, CardTitle, MenuItem, ProgressBar} from 'react-materialize';
+import { Table, Row, Col, Icon, ProgressBar} from 'react-materialize';
 
 let lodash = require('lodash');
 

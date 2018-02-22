@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
-import {Container, Row, Card, Col, ProgressBar, Collection}from 'react-materialize'
-import {
-    Route,
-    Link,
-    Switch,
-    Redirect
-} from 'react-router-dom'
-import ToastNotification from '../Script/ToastNotifcation'
+import { Row, Card, Col, ProgressBar, Collection}from 'react-materialize'
+import {Link} from 'react-router-dom'
 import Appearances from "../Enumeration/Appearance";
 
 

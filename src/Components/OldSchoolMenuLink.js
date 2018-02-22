@@ -1,5 +1,5 @@
-import React, { Component}  from 'react';
-import {Navbar, NavItem, Icon, Container} from 'react-materialize'
+import React  from 'react';
+import {Icon} from 'react-materialize'
 import {
     Link, Route,
 } from 'react-router-dom';

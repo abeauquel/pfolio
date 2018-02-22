@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { Collapsible, CollapsibleItem, Pagination, Row, Col, Card, CardTitle, MediaBox, ProgressBar} from 'react-materialize';
+import { Collapsible, CollapsibleItem, Row, Col, Card, MediaBox, ProgressBar} from 'react-materialize';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
-let $ = require("jquery")(window);
 
 /***
  * Récupérer l'index du server actuel
@@ -117,7 +116,7 @@ class Competences extends Component{
     render(){
 
         return(
-            <Card key={this.props.codeAct} sty>
+            <Card key={this.props.codeAct} >
 
                 <blockquote  style={{borderLeftColor: Appearances.backgroundColor}}><h4 >Activite : {this.props.codeAct}</h4></blockquote>
 
