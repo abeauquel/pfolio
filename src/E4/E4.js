@@ -1,11 +1,7 @@
 import React, {Component, ReactDOM} from 'react';
 
 import {Row, Col, Card} from 'react-materialize';
-import {
-    Route,
-    withRouter,
-    Switch
-} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import Competences from './Competences';
 import Grille from "./Grille";
 import Activites from "./Activites";

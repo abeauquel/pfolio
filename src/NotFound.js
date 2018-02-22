@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Container, Toast}from 'react-materialize'
+import React from 'react';
+import {Container}from 'react-materialize'
 import {Row, Col} from 'react-materialize';
 import ToastNotifcation from "./Script/ToastNotifcation";
 

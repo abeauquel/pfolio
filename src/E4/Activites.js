@@ -1,11 +1,6 @@
 import React, {Component, ReactDOM} from 'react';
 
 import { Collection, Pagination, Row, Col, Input, ProgressBar, Badge, CollectionItem, Icon} from 'react-materialize';
-import {
-    Route,
-    Link
-} from 'react-router-dom'
-import Competences from './Competences';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 
@@ -107,7 +102,6 @@ class Activites extends Component {
 
     handleSelectProjet(event){
         this.setState({
-            acquiseOnly:event.target.value !== "",
             IDprojetSelected:event.target.value,
         },()=>{
             this.loadActivite(this.props._activites);
@@ -116,7 +110,7 @@ class Activites extends Component {
     }
 
     render(){
-
+        //TODO gérer les activités obligatoires
         return(
             <Row>
                 <nav style={{heighttop:'50px', marginBottom:10}}>
@@ -144,7 +138,6 @@ class Activites extends Component {
                         })}
                     </Input>
                 </Row>
-
                 {this.state.activites.length ?
 
                     <div className={'center-align '}>
@@ -166,18 +159,18 @@ class Activites extends Component {
                         if(index>=(this.state.page*this.state.nbAct)-this.state.nbAct && index<(this.state.page*this.state.nbAct) ){
 
                             return (<CollectionItem
-                                        key={activite.code} href={'#'}
-                                        active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
-                                        onClick={()=>this.props.changeValue('codeActivite',activite.code)}
-                                    >   <Row>
-                                        <Col s={10}><b>{activite.code}</b>{activite.libelle}</Col>
-                                        <Col s={2}>
-                                        {activite.nbCompetencesAcquises > 0 ?
-                                            <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} preuve{activite.nbCompetencesAcquises >1 ? "s":null}</Badge>
+                                key={activite.code} href={'#'}
+                                active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
+                                onClick={()=>this.props.changeValue('codeActivite',activite.code)}
+                            >   <Row>
+                                <Col s={9}><b>{activite.code}</b>{activite.libelle}</Col>
+                                <Col s={3}>
+                                    {activite.nbCompetencesAcquises > 0 ?
+                                        <Badge className={'red white-text'}>{activite.nbCompetencesAcquises} preuve{activite.nbCompetencesAcquises >1 ? "s":null}</Badge>
                                         :null}
-                                         </Col>
-                                        </Row>
-                                    </CollectionItem>)
+                                </Col>
+                            </Row>
+                            </CollectionItem>)
 
                         }return <div key={activite.code}> {" "}</div>
 
