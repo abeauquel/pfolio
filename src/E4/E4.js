@@ -146,6 +146,7 @@ class E4 extends Component{
                             {this.state.codeActivite ?
                                 <Competences
                                     changeValue={this.changeValue.bind(this)}
+                                    _activites={this.state._activites}
                                     codeAct={this.state.codeActivite}
                                 />
                             :<blockquote style={{marginLeft:'3%'}}>Sélectionnez une activité</blockquote>}
