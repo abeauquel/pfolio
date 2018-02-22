@@ -36,6 +36,7 @@ class Competences extends Component{
 
         this.setState({
             competences: activite.competences,
+            activite:activite,
         })
     }
 
@@ -49,14 +50,15 @@ class Competences extends Component{
     render(){
 
         return(
-            <Card key={this.props.codeAct} >
+            <Card key={this.state.activite ?  this.state.activite.codeAct: null} >
 
-                <blockquote  style={{borderLeftColor: Appearances.backgroundColor}}><h4 >Activite : {this.props.codeAct}</h4></blockquote>
+                <blockquote  style={{borderLeftColor: Appearances.backgroundColor}}><h4 >Activite : {this.state.activite ?  this.state.activite.codeAct: null}</h4></blockquote>
 
-                {!this.state.competences ?
-                    <Col s={12}>
+                {this.state.competences.length < 1 ?
+                    <Col s={10}>
                         <ProgressBar />
                         <small>Chargement des competences</small>
+                    <br/>
                     </Col>
                     :
                     this.state.competences.map((comp,indexComp)=>(

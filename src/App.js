@@ -30,6 +30,8 @@ class App extends Component{
                     <Switch>
                         <Route exact path="/" component={Home}/>
                         <Route path="/Home" component={Home}/>
+
+                        <Route path="/E4/Activites/:codeActivite" component={E4}/>
                         <Route path="/E4" component={E4}/>
 
                         <Route path="/E6/" component={E6}/>

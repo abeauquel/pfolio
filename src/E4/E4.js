@@ -25,6 +25,13 @@ class E4 extends Component{
     componentWillMount(){
         this.fetchActivites();
         this.fetchProjet();
+        if (this.props.match.params.codeActivite){
+            let code = this.props.match.params.codeActivite;
+            this.setState({
+                codeActivite:code,
+            },()=>{
+            })
+        }
     }
 
     /***
@@ -108,7 +115,6 @@ class E4 extends Component{
 
         return(
             <div>
-
                 <nav>
                     <div className={'nav-wrapper '+Appearances.backgroundColor}>
                         <ul className="rightt hide-on-med-and-down">
@@ -123,6 +129,8 @@ class E4 extends Component{
                         <Grille
                             changeValue={this.changeValue.bind(this)}
                             _activites={this.state._activites}
+                            projets={this.state.projets}
+
                         />
                     )}/>
                     <Route render={()=>(

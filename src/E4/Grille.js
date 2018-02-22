@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Table, Row, Col, Icon, ProgressBar} from 'react-materialize';
-
+import {
+    Link
+} from 'react-router-dom';
 let lodash = require('lodash');
 
 class Grille extends Component{
@@ -61,12 +63,13 @@ class Grille extends Component{
                             <small>Aucune activite</small>
                         </Col>
                     }
+                    <div style={{overflowX:'auto'}}>
                     <Table hoverable={true} centred={false} responsive={false} bordered={true} style={{border:'solid black 2px', borderCollapse:'collapse'}}>
-                        <thead>
+                        <thead style={{width:'50px', }}>
                         <tr >
                             <th data-field="id" style={{backgroundColor:'grey' }}><div className={'center-align'}><p>Situation</p> <p>professionnelle </p> <p>(intitulé et liste des </p> <p>documents et </p>production associés)</div></th>
                             {this.state.activites.map((activite, index)=>{
-                                return <th data-field="name"  style={{writingMode: 'sideways-lr', border:'solid black 2px', borderCollapse:'collapse'}}><div className={'left-align'}><b >{activite.code}</b> {activite.libelle}</div></th>
+                                return <th data-field="name"  style={{ border:'solid black 2px', borderCollapse:'collapse'}}><b >{activite.code}</b> {activite.libelle}</th>
 
                             })}
 
@@ -78,7 +81,7 @@ class Grille extends Component{
                             <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>Réaliser</td >
                             {this.state.activites.map((activite, index)=>{
                                 return <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>
-                                        {activite.nbCompetencesAcquises>0 ? <a href={'/E4/Activites/'+activite.code}><Icon>check</Icon></a> :null}
+                                        {activite.nbCompetencesAcquises>0 ? <Link to={'/E4/Activites/'+activite.code}><Icon>check</Icon></Link> :null}
                                 </td>
 
 
@@ -88,6 +91,7 @@ class Grille extends Component{
 
                         </tbody>
                     </Table>
+                    </div>
 
 
                 </Row>
