@@ -17,10 +17,12 @@ class Competences extends Component{
     }
 
     componentWillMount(){
-
+        console.log(this.props.codeAct)
+        this.loadCompetences(this.props.codeAct)
     }
 
-    componentWillUpdate(nextProps, nextState){
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.codeAct)
       if(nextProps.codeAct === this.props.codeAct){
           return;
       }
@@ -35,8 +37,8 @@ class Competences extends Component{
             });
 
         this.setState({
+            activite: activite,
             competences: activite.competences,
-            activite:activite,
         })
     }
 
@@ -50,9 +52,10 @@ class Competences extends Component{
     render(){
 
         return(
-            <Card key={this.state.activite ?  this.state.activite.codeAct: null} >
+            <Card key={'competences'}>
 
-                <blockquote  style={{borderLeftColor: Appearances.backgroundColor}}><h4 >Activite : {this.state.activite ?  this.state.activite.codeAct: null}</h4></blockquote>
+                <blockquote style={{borderLeftColor: Appearances.backgroundColor}}><h4>Activite
+                    : {this.state.activite != null ? this.state.activite.code : null}</h4></blockquote>
 
                 {this.state.competences.length < 1 ?
                     <Col s={10}>

@@ -160,9 +160,9 @@ class Activites extends Component {
                     {this.state.activites.map((activite,index)=>{
                         if(index>=(this.state.page*this.state.nbAct)-this.state.nbAct && index<(this.state.page*this.state.nbAct) ){
 
-                            return (<Link className={'collection-item ' + (this.props.codeActivite ? ((this.props.codeActivite === activite.code)? 'active' :''):'')}
+                            return (<Link
+                                className={'collection-item ' + (this.props.codeActivite && this.props.codeActivite === activite.code ? 'active' : '')}
                                 key={activite.code} to={'/E4/Activites/'+activite.code}
-                                active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
                                 onClick={()=>this.props.changeValue('codeActivite',activite.code)}
                             >   <Row>
                                 <Col s={9}><b>{activite.code}</b>{activite.libelle}</Col>

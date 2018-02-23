@@ -64,12 +64,15 @@ class Grille extends Component{
                         </Col>
                     }
                     <div style={{overflowX:'auto'}}>
-                    <Table hoverable={true} centred={false} responsive={false} bordered={true} style={{border:'solid black 2px', borderCollapse:'collapse'}}>
+                        <Table responsive={false} bordered={true}
+                               style={{border: 'solid black 2px', borderCollapse: 'collapse'}}>
                         <thead style={{width:'50px', }}>
                         <tr >
                             <th data-field="id" style={{backgroundColor:'grey' }}><div className={'center-align'}><p>Situation</p> <p>professionnelle </p> <p>(intitulé et liste des </p> <p>documents et </p>production associés)</div></th>
                             {this.state.activites.map((activite, index)=>{
-                                return <th data-field="name"  style={{ border:'solid black 2px', borderCollapse:'collapse'}}><b >{activite.code}</b> {activite.libelle}</th>
+                                return <th key={activite.code} data-field="name"
+                                           style={{border: 'solid black 2px', borderCollapse: 'collapse'}}>
+                                    <b>{activite.code}</b> {activite.libelle}</th>
 
                             })}
 
@@ -80,8 +83,10 @@ class Grille extends Component{
                         <tr style={{border:'solid black 2px', borderCollapse:'collapse'}}>
                             <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>Réaliser</td >
                             {this.state.activites.map((activite, index)=>{
-                                return <td style={{border:'solid black 2px', borderCollapse:'collapse'}}>
-                                        {activite.nbCompetencesAcquises>0 ? <Link to={'/E4/Activites/'+activite.code}><Icon>check</Icon></Link> :null}
+                                return <td key={index} style={{border: 'solid black 2px', borderCollapse: 'collapse'}}>
+                                    {activite.nbCompetencesAcquises > 0 ?
+                                        <Link to={'/E4/Activites/' + activite.code}><Icon center
+                                                                                          large>check</Icon></Link> : null}
                                 </td>
 
 
