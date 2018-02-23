@@ -1,5 +1,7 @@
 import React, {Component, ReactDOM} from 'react';
-
+import {
+    Link, Route,
+} from 'react-router-dom';
 import { Collection, Pagination, Row, Col, Input, ProgressBar, Badge, CollectionItem, Icon} from 'react-materialize';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
@@ -130,7 +132,7 @@ class Activites extends Component {
 
 
                     <Input s={7} type='select' label='Par projet' icon='computer'  onChange={(e)=>this.handleSelectProjet(e)}>
-                        <option ></option>
+                        <option > </option>
                         {this.props.projets.map((projet)=>{
                             return (
                                 <option key={projet.id} value={projet.id}>{projet.nom}</option>
@@ -158,9 +160,9 @@ class Activites extends Component {
                     {this.state.activites.map((activite,index)=>{
                         if(index>=(this.state.page*this.state.nbAct)-this.state.nbAct && index<(this.state.page*this.state.nbAct) ){
 
-                            return (<CollectionItem
-                                key={activite.code} href={'#'}
-                                active={this.props.codeActivite ? (this.props.codeActivite === activite.code) :false}
+                            return (<Link
+                                className={'collection-item ' + (this.props.codeActivite && this.props.codeActivite === activite.code ? 'active' : '')}
+                                key={activite.code} to={'/E4/Activites/'+activite.code}
                                 onClick={()=>this.props.changeValue('codeActivite',activite.code)}
                             >   <Row>
                                 <Col s={9}><b>{activite.code}</b>{activite.libelle}</Col>
@@ -170,7 +172,7 @@ class Activites extends Component {
                                         :null}
                                 </Col>
                             </Row>
-                            </CollectionItem>)
+                            </Link>)
 
                         }return <div key={activite.code}> {" "}</div>
 

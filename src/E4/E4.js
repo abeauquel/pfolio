@@ -14,17 +14,32 @@ let lodash = require('lodash');
 class E4 extends Component{
     constructor(props){
         super(props);
-
+        console.log(props.match.params);
         this.state={
             _activites: [],
             selected:null,
-            codeActivite:null,
+            codeActivite: props.match.params.codeActivite || null,
             projets:[],
         }
     }
     componentWillMount(){
         this.fetchActivites();
         this.fetchProjet();
+        /*if (this.props.match.params.codeActivite){
+            let code = this.props.match.params.codeActivite;
+            this.setState({
+                codeActivite:code,
+            },()=>{
+                console.log("mon state : "+ this.state.codeActivite)
+            })
+        }*/
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.match.params.codeActivite)
+        this.setState({
+            codeActivite: nextProps.match.params.codeActivite,
+        })
     }
 
     /***
@@ -108,7 +123,6 @@ class E4 extends Component{
 
         return(
             <div>
-
                 <nav>
                     <div className={'nav-wrapper '+Appearances.backgroundColor}>
                         <ul className="rightt hide-on-med-and-down">
@@ -123,6 +137,8 @@ class E4 extends Component{
                         <Grille
                             changeValue={this.changeValue.bind(this)}
                             _activites={this.state._activites}
+                            projets={this.state.projets}
+
                         />
                     )}/>
                     <Route render={()=>(
@@ -142,8 +158,10 @@ class E4 extends Component{
                         <Col s={7} style={{height: '55em', overflowY: 'auto'}}>
                             <h3 className={'center-align'}>Liste de compétences</h3>
                             <hr/>
-
-                            {this.state.codeActivite ?
+                            {/*
+                            {alert(this.state.codeActivite)}
+*/}
+                            {this.state.codeActivite && this.state._activites.length > 0 ?
                                 <Competences
                                     changeValue={this.changeValue.bind(this)}
                                     _activites={this.state._activites}
