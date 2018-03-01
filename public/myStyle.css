@@ -2,6 +2,13 @@ td:hover {
     background-color: #8b858f;
 }
 
+td:hover i {
+    color: white;
+}
+
+blockquote {
+    border-left-color: #257af9;
+}
 nav .nav-wrapper{
     background-color: #257af9;
 }
