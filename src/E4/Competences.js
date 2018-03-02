@@ -97,14 +97,34 @@ class Competences extends Component{
     })
   }
 
-  loadIllustrer() {
+  afficherImagesIllustrer(Illust) {
+    let str = [];
+    let codeCompetence = Illust.Competence.replace('.', '-');
+    codeCompetence = codeCompetence.replace('.', '-');
+    codeCompetence = codeCompetence.replace('.', '-');
+    for (let i = 1; i <= Illust.haveLien; i++) {
 
+      str.push(
+          <MediaBox
+              src={"/img/illustrer/illustrer"
+              + i
+              + Illust.ordreApparition
+              + Illust.Illustration.id
+              + codeCompetence
+              + ".png"}
+              caption={"screen doc sur "
+              + Illust.Illustration.Projet.nom
+              + " (illustre " + Illust.Competence
+              + " )"} width="500"/>
+      )
+    }
+    return str
   }
 
   render() {
 
     return (
-        <Row key={'competences'}>
+        <Row>
 
           <blockquote style={{borderLeftColor: Appearances.backgroundColor}}>
             <h4>Activite
@@ -144,7 +164,10 @@ class Competences extends Component{
                           <div key={indexIllustrer}>
                             <br/>
                             <p>{Illust.description}</p>
+                            {Illust.haveLien > 0 ? this.afficherImagesIllustrer(
+                                Illust)
 
+                                : null}
                             <Collapsible accordion>
                               <CollapsibleItem header={"En lien avec : "
                               + Illust.Illustration.titre}>

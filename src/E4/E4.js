@@ -157,8 +157,7 @@ class E4 extends Component{
             <Route render={() => (
                 <Row>
 
-                  <Card className={'col s5'}
-                        style={{height: '55em', overflowY: 'auto'}}>
+                  <Card className={'col s5 E4composant'}>
                     <Activites
                         changeValue={this.changeValue.bind(this)}
                         codeActivite={this.state.codeActivite}
@@ -170,7 +169,7 @@ class E4 extends Component{
                   </Card>
 
 
-                  <Col s={7} style={{height: '55em', overflowY: 'auto'}}>
+                  <Col s={7} className={'E4composant'}>
                     <h3 className={'center-align'}>Liste de compétences</h3>
                     <hr/>
                     {/*

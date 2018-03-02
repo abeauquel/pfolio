@@ -20,3 +20,8 @@ nav .nav-wrapper{
 .page-footer {
     background-color: #257af9;
 }
+
+.E4composant {
+  height: 55em;
+  overflow-y: auto;
+}
