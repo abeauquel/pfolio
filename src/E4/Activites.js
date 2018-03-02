@@ -52,21 +52,26 @@ class Activites extends Component {
 
     let activites = lodash.filter(array_activites, (activite, index) => {
       let result = true;
-      let nbCompetencesAcquise = 0;
-
+      let nbCompetencesAcquise = activite.nbCompetencesAcquises;
+      console.log("je recharge tout")
       /** Je recompte mes compétences acquises*/
-      if (this.state.IDprojetSelected === "") {
+
+      nbCompetencesAcquise = 0;
         activite.competences.map((competence) => {
-          return competence.Illustrer.map((illustrer) => {
+          console.log(competence.code)
+          competence.Illustrer.map((illustrer) => {
             nbCompetencesAcquise += 1;
           })
         });
+
         activite.nbCompetencesAcquises = nbCompetencesAcquise;
-      }
+      console.log(activite.nbCompetencesAcquises);
+
+
 
       /** Vire l'activité si non acquises et AcquiseOnly*/
-      if (this.state.IDprojetSelected === "" && this.state.acquiseOnly
-          && activite.nbCompetencesAcquises < 1) {
+      if (this.state.acquiseOnly && nbCompetencesAcquise === 0) {
+        console.log('je vire l accc')
         return false;
       }
 
@@ -80,6 +85,7 @@ class Activites extends Component {
 
       /** Compte le nombre de compétences acquises pour un projet*/
       if (this.state.IDprojetSelected > 0) {
+        nbCompetencesAcquise = 0;
         result = false;
         activite.competences.map((competence) => {
           return competence.Illustrer.map((illustrer) => {
@@ -127,10 +133,8 @@ class Activites extends Component {
    *  Evenement sur le check de activités acquises seulement
    */
   handleCheckAcquises(e) {
-    console.log("Activités avec compétences only éest " + e.target.checked)
-    e.target.checked = !e.target.checked;
     this.setState({
-      acquiseOnly: !this.state.acquiseOnly,
+      acquiseOnly: e.target.checked,
     }, () => {
       this.loadActivite(this.props._activites);
     })
@@ -161,9 +165,10 @@ class Activites extends Component {
   }
 
   render() {
-    //FIXME trouver pourquoi le this.state.acquiseOnly ne change pas
+
     return (
         <Row>
+          {/*Trie sur les d'activités*/}
           <nav style={{heighttop: '50px', marginBottom: 10}}>
             <div className={'nav-wrapper ' + Appearances.backgroundColor}>
               <form>
@@ -190,14 +195,15 @@ class Activites extends Component {
                 )
               })}
             </Input>
-            {this.state.acquiseOnly ?
-                <Input s={5} name='group1' key={11} className={'red'}
+
+            {this.state.IDprojetSelected > 0 ?
+                <Input s={5} name='group1' key={12} className={'red'}
                        type='checkbox' label='Activités réalisées seulement'
-                       checked={true}
-                       onChange={(e) => this.handleCheckAcquises(e)}/>
+                       onChange={(e) => this.handleCheckAcquises(e)}
+                       disabled='disabled'/>
                 : <Input s={5} name='group1' key={12} className={'red'}
                          type='checkbox' label='Activités réalisées seulement'
-                         checked={false}
+                         checked={this.state.acquiseOnly}
                          onChange={(e) => this.handleCheckAcquises(e)}/>
             }
             <Input s={5} name='group1' key={2} className={'red'} type='checkbox'
@@ -222,6 +228,7 @@ class Activites extends Component {
               </Col>
           }
 
+          {/*Collection d'activités*/}
           <Collection ref={this.state.activites.length}>
 
             {this.state.activites.map((activite, index) => {

@@ -138,7 +138,7 @@ class Competences extends Component{
                       /** Si l'illustrer ne dois pas être affiché*/
                       if (!this.state.illustrerAMettre.includes(
                               Illust.Illustration.id)) {
-                        return <div key={indexIllustrer}></div>
+                        return null
                       }
                       return (
                           <div key={indexIllustrer}>
