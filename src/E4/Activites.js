@@ -184,7 +184,7 @@ class Activites extends Component {
 
           <Row>
 
-            <Input s={7} type='select' label='Par projet' icon='computer'
+            <Input m={7} s={12} type='select' label='Par projet' icon='computer'
                    onChange={(e) => this.handleSelectProjet(e)}>
               <option></option>
               {this.props.projets.map((projet) => {
@@ -197,16 +197,17 @@ class Activites extends Component {
             </Input>
 
             {this.state.IDprojetSelected > 0 ?
-                <Input s={5} name='group1' key={12} className={'red'}
+                <Input m={5} s={12} name='group1' key={12} className={'red'}
                        type='checkbox' label='Activités réalisées seulement'
                        onChange={(e) => this.handleCheckAcquises(e)}
                        disabled='disabled'/>
-                : <Input s={5} name='group1' key={12} className={'red'}
+                : <Input m={5} s={12} name='group1' key={12} className={'red'}
                          type='checkbox' label='Activités réalisées seulement'
                          checked={this.state.acquiseOnly}
                          onChange={(e) => this.handleCheckAcquises(e)}/>
             }
-            <Input s={5} name='group1' key={2} className={'red'} type='checkbox'
+            <Input m={5} s={12} name='group1' key={2} className={'red'}
+                   type='checkbox'
                    label='Compétences réalisées seulement'
                    checked={this.props.CompAcquisesOnly}
                    onChange={() => this.handleCheckCompetencesAcquises()}/>

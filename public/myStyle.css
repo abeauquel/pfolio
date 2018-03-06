@@ -9,9 +9,7 @@ td:hover i {
 blockquote {
     border-left-color: #257af9;
 }
-nav .nav-wrapper{
-    background-color: #257af9;
-}
+
 .pagination li.active a {
     color: #fff;
     background-color: #257af9;

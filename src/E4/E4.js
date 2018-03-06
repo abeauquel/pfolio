@@ -1,6 +1,6 @@
 import React, {Component, ReactDOM} from 'react';
 
-import {Row, Col, Card} from 'react-materialize';
+import {Row, Col, Card, Navbar, NavItem, SideNav} from 'react-materialize';
 import {Route, Switch} from 'react-router-dom'
 import Competences from './Competences';
 import Grille from "./Grille";
@@ -126,7 +126,8 @@ class E4 extends Component{
 
     return (
         <div>
-          <nav>
+          <Navbar brand='' ref={'navBarE4'} left
+                  className={Appearances.backgroundColor}>
             <div className={'nav-wrapper ' + Appearances.backgroundColor}>
               <ul className="rightt hide-on-med-and-down">
                 <OldSchoolMenuLink to="/E4/Activites"
@@ -140,7 +141,22 @@ class E4 extends Component{
                                    icon={"view_list"}/>
               </ul>
             </div>
-          </nav>
+          </Navbar>
+          {/* <nav>
+            <div className={' nav-wrapper ' + Appearances.backgroundColor}>
+              <ul className="hide-on-med-and-down">
+                <OldSchoolMenuLink to="/E4/Activites"
+                                   label="Illustration des compétences"
+                                   icon="view_list"/>
+                <OldSchoolMenuLink to="/E4/Grille" activeOnlyWhenExact={true}
+                                   label="Tableau de synthèse"
+                                   icon={"view_module"}/>
+                <OldSchoolMenuLink to="/E4/ActivitesObligatoires"
+                                   label="Activités obligatoires"
+                                   icon={"view_list"}/>
+              </ul>
+            </div>
+          </nav>*/}
           <Switch>
 
             <Route exact path={'/E4/Grille'} render={() => (
@@ -157,7 +173,7 @@ class E4 extends Component{
             <Route render={() => (
                 <Row>
 
-                  <Card className={'col s5 E4composant'}>
+                  <Card className={'col m5 col s12 E4composant'}>
                     <Activites
                         changeValue={this.changeValue.bind(this)}
                         codeActivite={this.state.codeActivite}
@@ -169,7 +185,7 @@ class E4 extends Component{
                   </Card>
 
 
-                  <Col s={7} className={'E4composant'}>
+                  <Col m={7} s={12} className={'E4composant'}>
                     <h3 className={'center-align'}>Liste de compétences</h3>
                     <hr/>
                     {/*

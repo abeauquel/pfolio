@@ -16,6 +16,7 @@ import {
 import E4 from "./E4/E4";
 import E6 from "./E6/E6";
 import Projets from "./Projet/Projets";
+import Veille from "./Veille/Veille"
 
 
 
@@ -36,6 +37,7 @@ class App extends Component{
 
                         <Route path="/E6/" component={E6}/>
                         <Route path="/Projets" component={Projets}/>
+                      <Route path={"/veilletech"} component={Veille}/>
                         <Route component={NotFound}/>
                     </Switch>
 
