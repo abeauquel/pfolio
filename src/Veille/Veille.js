@@ -9,7 +9,7 @@ import {
   ProgressBar
 } from 'react-materialize'
 import {
-  Link, Route,
+  Link,
 } from 'react-router-dom';
 
 class Veille extends Component {
@@ -90,10 +90,11 @@ class Veille extends Component {
                       dataSource={{
                         sourceType: 'profile',
                         screenName: this.state.selected ? this.state.selected.id
-                            : ""
+                            : "reactjs"
                       }}
                       options={{
-                        username: this.state.selected ? this.state.selected.id : "",
+                        username: this.state.selected ? this.state.selected.id
+                            : "reactjs",
                         height: '800'
                       }}
                       onLoad={() => console.log('Timeline is loaded!')}
