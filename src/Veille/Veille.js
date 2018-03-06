@@ -86,19 +86,21 @@ class Veille extends Component {
           </Card>
           <Col s={8}>
             <Container>
-              {this.state.selected ? null : <p>Sélectionnez un compte</p>}
-              <Timeline
-                  dataSource={{
-                    sourceType: 'profile',
-                    screenName: this.state.selected ? this.state.selected.id
-                        : ""
-                  }}
-                  options={{
-                    username: this.state.selected ? this.state.selected.id : "",
-                    height: '800'
-                  }}
-                  onLoad={() => console.log('Timeline is loaded!')}
-              />
+              {this.state.selected ? <Timeline
+                      dataSource={{
+                        sourceType: 'profile',
+                        screenName: this.state.selected ? this.state.selected.id
+                            : ""
+                      }}
+                      options={{
+                        username: this.state.selected ? this.state.selected.id : "",
+                        height: '800'
+                      }}
+                      onLoad={() => console.log('Timeline is loaded!')}
+                  />
+
+                  : <p>Sélectionnez un compte</p>}
+
             </Container>
           </Col>
         </Row>
