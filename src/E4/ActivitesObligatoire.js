@@ -43,7 +43,7 @@ class ActivitesObligatoire extends Component {
           libelle: "Activités réalisé grâce aux projets ( voir portfolio)"
         },
         {id: 2, libelle: "à venir "},
-        {id: 3, libelle: "à venir"},
+        {id: 3, libelle: "Twitter <3<3"},
         {
           id: 4,
           libelle: " Ce portfolio fait office de document relatif à la production ? "
@@ -64,7 +64,7 @@ class ActivitesObligatoire extends Component {
             {this.state.activites.length ? null
                 : <Col s={12}>
                   <ProgressBar/>
-                  <small>Chargement des projets</small>
+                  <small>Chargement des activités</small>
                 </Col>
             }
             <Collection>

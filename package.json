@@ -13,7 +13,8 @@
     "react-materialize": "^1.1.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "react-twitter-widgets": "^1.7.1"
   },
   "scripts": {
     "start": "react-scripts start",
