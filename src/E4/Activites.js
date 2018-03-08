@@ -159,7 +159,8 @@ class Activites extends Component {
       acquiseOnly: event.target.value !== "",
     }, () => {
       this.loadActivite(this.props._activites);
-      this.props.changeValue('projetSelected', event.target.value)
+      this.props.changeValue('projetSelected', event.target.value);
+      this.props.changeValue('codeActivite', null);
     })
 
   }

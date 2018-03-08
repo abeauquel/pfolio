@@ -1,6 +1,5 @@
 import '../node_modules/materialize-css/dist/css/materialize.min.css';
 import '../node_modules/materialize-css/dist/js/materialize.min';
-
 import React, { Component } from 'react';
 import Header from './Components/Header';
 import Myfooter from './Components/Footer';
@@ -22,6 +21,12 @@ import Veille from "./Veille/Veille"
 
 
 class App extends Component{
+  componentWillMount() {
+    console.log(process.env.NODE_ENV);
+    console.log(process.env);
+    console.log(process.env.REACT_APP_API_HOST);
+
+  }
     render(){
         return(
             <Router>
