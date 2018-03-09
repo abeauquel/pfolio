@@ -106,7 +106,7 @@ class Veille extends Component {
       }
       /** Trie sur les thèmes */
       if (this.state.selectedIdTheme > 0 && result && compte.theme.id
-          != this.state.selectedIdTheme) {
+          !== this.state.selectedIdTheme) {
         result = false;
 
       }
