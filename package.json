@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jquery": "^0.2.0",
     "lodash": "^4.17.4",
     "materialize-css": "^0.100.2",
     "materialize-js": "^1.0.0",
