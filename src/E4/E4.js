@@ -30,14 +30,7 @@ class E4 extends Component{
   componentWillMount() {
     this.fetchActivites();
     this.fetchProjet();
-    /*if (this.props.match.params.codeActivite){
-        let code = this.props.match.params.codeActivite;
-        this.setState({
-            codeActivite:code,
-        },()=>{
-            console.log("mon state : "+ this.state.codeActivite)
-        })
-    }*/
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +44,7 @@ class E4 extends Component{
    * Chargement des activités
    */
   fetchActivites() {
-    fetch("https://abeauquel.ovh/api_pfolio/activites", {
+    fetch(process.env.REACT_APP_API_HOST + "activites", {
       method: 'GET',
       header: {
         'Accept': 'application/json',
@@ -84,7 +77,7 @@ class E4 extends Component{
    * Chargement des projets
    */
   fetchProjet() {
-    fetch("https://abeauquel.ovh/api_pfolio/projets", {
+    fetch(process.env.REACT_APP_API_HOST + "projets", {
       method: 'GET',
       header: {
         'Accept': 'application/json',
@@ -126,8 +119,10 @@ class E4 extends Component{
 
     return (
         <div>
-          <Navbar brand='' ref={'navBarE4'} left
-                  className={Appearances.backgroundColor}>
+          {/*      <Navbar brand='' ref={'navBarE4'} left
+                  className={Appearances.backgroundColor}
+                  options={{edge: 'right'}}
+          >
             <div className={'nav-wrapper ' + Appearances.backgroundColor}>
               <ul className="rightt hide-on-med-and-down">
                 <OldSchoolMenuLink to="/E4/Activites"
@@ -141,8 +136,8 @@ class E4 extends Component{
                                    icon={"view_list"}/>
               </ul>
             </div>
-          </Navbar>
-          {/* <nav>
+          </Navbar>*/}
+          <nav>
             <div className={' nav-wrapper ' + Appearances.backgroundColor}>
               <ul className="hide-on-med-and-down">
                 <OldSchoolMenuLink to="/E4/Activites"
@@ -156,7 +151,7 @@ class E4 extends Component{
                                    icon={"view_list"}/>
               </ul>
             </div>
-          </nav>*/}
+          </nav>
           <Switch>
 
             <Route exact path={'/E4/Grille'} render={() => (

@@ -21,7 +21,9 @@ class Header extends Component{
                 <OldSchoolMenuLink to="/E4" label="E4" icon={"web"}/>
                 <OldSchoolMenuLink to="/E6" label="E6" icon={"computer"}/>
                 <OldSchoolMenuLink to="/Projets" label="Mes projets" icon={"book"}/>
+              {/*
                 <OldSchoolMenuLink to="/construction" label="Construction de ce PortFolio" icon={"build"}/>
+*/}
               <OldSchoolMenuLink to="/veilletech" label="Veille technologique"
                                  icon={"lightbulb_outline"}/>
             </Navbar>

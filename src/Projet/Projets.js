@@ -20,7 +20,7 @@ class Projets extends Component{
     }
 
     fetchProjet(){
-        fetch("https://abeauquel.ovh/api_pfolio/projets",{
+      fetch(process.env.REACT_APP_API_HOST + "projets", {
             method:'GET',
             header:{
                 'Accept':'application/json',
