@@ -100,6 +100,11 @@ class Veille extends Component {
     let comptes = lodash.filter(this.state._comptes, (compte, index) => {
       let result = true;
 
+      if (this.state.wordSearchBar !== ""
+          && !compte.nomCompte.toLowerCase().includes(
+              this.state.wordSearchBar)) {
+        return false;
+      }
       /** Si aucun trie*/
       if (this.state.selectedIdTheme < 1 && !this.state.ComptesWithTweetOnly) {
         return true;
