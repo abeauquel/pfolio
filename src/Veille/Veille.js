@@ -181,15 +181,10 @@ class Veille extends Component {
 
     return (<Row style={{marginTop: 10, height: '56em'}}>
           <Card className={'col s4'}>
-            <h5>Comptes twitter suivies</h5>
+            <h5>Sources</h5>
             <hr/>
 
-            {this.state.comptes.length ? null
-                : <Col s={12}>
-                  <ProgressBar/>
-                  <small>Chargement des comptes</small>
-                </Col>
-            }
+
             {/*Trie sur les comptes*/}
             <nav style={{heighttop: '50px', marginBottom: 10}}>
               <div className={'nav-wrapper ' + Appearances.backgroundColor}>
@@ -220,6 +215,13 @@ class Veille extends Component {
                      checked={this.state.ComptesWithTweetOnly}
                      onChange={() => this.handleCheckComptesWithTweetOnly()}/>
             </Row>
+
+            {this.state.comptes.length > 0 ? null
+                : <Col s={12}>
+                  <ProgressBar/>
+                  <small>Chargement des comptes</small>
+                </Col>
+            }
 
             {/*Affichage des comptes*/}
             <Collection>

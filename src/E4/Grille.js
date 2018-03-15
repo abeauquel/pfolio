@@ -38,7 +38,6 @@ class Grille extends Component{
   componentWillReceiveProps(nextProps) {
     if (nextProps._activites !== this.props._activites) {
       this.loadActivite(nextProps._activites);
-      console.log("j'ai rechargé mes activités");
     }
   }
 

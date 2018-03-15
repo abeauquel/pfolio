@@ -53,25 +53,21 @@ class Activites extends Component {
     let activites = lodash.filter(array_activites, (activite, index) => {
       let result = true;
       let nbCompetencesAcquise = activite.nbCompetencesAcquises;
-      console.log("je recharge tout")
       /** Je recompte mes compétences acquises*/
 
       nbCompetencesAcquise = 0;
         activite.competences.map((competence) => {
-          console.log(competence.code)
           competence.Illustrer.map((illustrer) => {
             nbCompetencesAcquise += 1;
           })
         });
 
         activite.nbCompetencesAcquises = nbCompetencesAcquise;
-      console.log(activite.nbCompetencesAcquises);
 
 
 
       /** Vire l'activité si non acquises et AcquiseOnly*/
       if (this.state.acquiseOnly && nbCompetencesAcquise === 0) {
-        console.log('je vire l accc')
         return false;
       }
 
@@ -189,7 +185,6 @@ class Activites extends Component {
                    onChange={(e) => this.handleSelectProjet(e)}>
               <option></option>
               {this.props.projets.map((projet) => {
-                console.log(this.state.acquiseOnly)
                 return (
                     <option key={projet.id}
                             value={projet.id}>{projet.nom}</option>

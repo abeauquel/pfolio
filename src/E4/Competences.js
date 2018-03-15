@@ -10,11 +10,9 @@ const msgNonApprisProjet = (Illust, idProjet) => {
   let bool = true;
   Illust.map((illustrer) => {
     if (illustrer.Illustration.Projet.id === idProjet) {
-      console.log("je retourne faux")
       bool = false;
     }
   })
-  console.log("je retourne vrai")
   return bool;
 }
 class Competences extends Component{
