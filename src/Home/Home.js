@@ -19,7 +19,7 @@ class Home extends Component{
     return (
         <Container>
 
-          <h3>Portfolio créé par alexandre beauquel</h3>
+          <h4>Portfolio - Alexandre Beauquel</h4>
           <br/>
           <p>Ce projet permet de répondre à plusieurs epreuves du BTS SIO</p>
           <p>Epreuve E4 : Décrire des situations rencontrées et liens avec les
@@ -39,7 +39,7 @@ class Home extends Component{
             <br/>
             <Col s={12}>
               <p>Avancement du Projet : </p>
-              <ProgressBar progress={50}/>
+              <ProgressBar progress={70}/>
             </Col>
             <Collection className={'col m5'} header='Notes de versions'>
               <CollectionItem><Badge newIcon> </Badge><b>Version

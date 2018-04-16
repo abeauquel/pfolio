@@ -15,7 +15,6 @@ let lodash = require('lodash');
 class E4 extends Component{
   constructor(props) {
     super(props);
-    console.log(props.match.params);
     this.state = {
       _activites: [],
       selected: null,
@@ -34,7 +33,7 @@ class E4 extends Component{
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.match.params.codeActivite)
+
     this.setState({
       codeActivite: nextProps.match.params.codeActivite,
     })
@@ -66,7 +65,7 @@ class E4 extends Component{
         _activites: json,
 
       });
-      console.log("Mes activités sont chargé dans E4");
+
     })
     .catch((error) => {
       console.log(error)
