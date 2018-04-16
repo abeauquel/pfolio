@@ -197,14 +197,14 @@ class Competences extends Component{
                                     : null}
 
                                 {/** PDF */}
-                                {Illust.Illustration.havePDF == '1' ? <div>
+                                {Illust.Illustration.havePDF === '1' ? <div>
                                       <p><a target="_blank"
                                             href={"/img/illustration/illustration"
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</a></p>
                                     </div>
 
-                                    : <p>pas de PDF : {Illust.Illustration.havePDF}</p>}
+                                    : null}
 
 
                                 <Collapsible popout>
