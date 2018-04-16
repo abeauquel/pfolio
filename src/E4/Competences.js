@@ -1,6 +1,16 @@
 import React, {Component} from 'react';
-import { Collapsible, CollapsibleItem, Row, Col, Card, MediaBox, ProgressBar} from 'react-materialize';
+import {
+  Collapsible,
+  CollapsibleItem,
+  Row,
+  Col,
+  Card,
+  MediaBox,
+  ProgressBar,
+  Pagination
+} from 'react-materialize';
 import Appearances from "../Enumeration/Appearance";
+import {Document, Page} from 'react-pdf';
 let lodash = require('lodash');
 
 const msgNonApprisProjet = (Illust, idProjet) => {
@@ -25,6 +35,8 @@ class Competences extends Component{
       competences: [],
       test: 0,
       activite: null,
+      numPagesPDF: null,
+      pageNumberPDF: 1,
     }
   }
 
@@ -42,6 +54,14 @@ class Competences extends Component{
     this.loadCompetences(this.props.codeAct, this.props.projetSelected)
   }
 
+  onDocumentLoad = ({numPagesPDF}) => {
+    this.setState({numPagesPDF: numPagesPDF});
+  }
+
+  handleLoad(event) {
+    alert(event);
+    console.log(event)
+  }
   /***
    * Algo de trie des compétences en fonction des critères
    * @param codeActivite
@@ -119,8 +139,10 @@ class Competences extends Component{
     return str
   }
 
-  render() {
+  handleChangePagePDF
 
+  render() {
+    const {pageNumberPDF, numPagesPDF} = this.state;
     return (
         <Row>
 
@@ -161,7 +183,7 @@ class Competences extends Component{
                       return (
                           <div key={indexIllustrer}>
                             <br/>
-                            <p>{Illust.description}</p>
+                            <p>{indexIllustrer + 1}) {Illust.description}</p>
                             {Illust.haveLien > 0 ? this.afficherImagesIllustrer(
                                 Illust)
 
@@ -172,6 +194,7 @@ class Competences extends Component{
                                 <div
                                     style={{whiteSpace: 'pre'}}>{(Illust.Illustration.description)}</div>
 
+                                {/** Image */}
                                 {Illust.Illustration.haveIMG === '1' ? <MediaBox
                                         src={"/img/illustration/illustration"
                                         + Illust.Illustration.id
@@ -180,6 +203,15 @@ class Competences extends Component{
                                         + Illust.Illustration.Projet.nom
                                         + " (illustre " + comp.code
                                         + " )"} width="500"/>
+                                    : null}
+
+                                {/** PDF */}
+                                {Illust.Illustration.havePDF === '1' ? <div>
+                                      <p><a target="_blank"
+                                            href={"/img/illustration/illustration"
+                                            + Illust.Illustration.id + ".pdf"}>Télécharger
+                                        le PDF</a></p>
+                                    </div>
                                     : null}
 
                                 <Collapsible popout>

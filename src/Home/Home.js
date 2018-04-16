@@ -1,20 +1,28 @@
 import React, {Component} from 'react';
 import {
-  Container,
+  Badge,
+  Col,
   Collection,
   CollectionItem,
-  Badge,
-  Row,
-  Col,
-  ProgressBar
+  Container,
+  ProgressBar,
+  Row
 } from 'react-materialize'
 
 class Home extends Component{
+  state = {
+    numPages: null,
+    pageNumber: 1,
+  }
   componentWillMount() {
 
   }
 
+  onDocumentLoad = ({numPages}) => {
+    this.setState({numPages});
+  }
   render() {
+    const {pageNumber, numPages} = this.state;
 
     return (
         <Container>

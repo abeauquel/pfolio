@@ -18,7 +18,8 @@ class Header extends Component{
         <div>
             <Navbar brand={'pfolio'} left className={Appearances.backgroundColor} >
                 <OldSchoolMenuLink to="/Home" label="Home" icon="home"/>
-                <OldSchoolMenuLink to="/E4" label="E4" icon={"web"}/>
+              <OldSchoolMenuLink to="/E4" label="Justification des activités"
+                                 icon={"web"}/>
                 <OldSchoolMenuLink to="/E6" label="E6" icon={"computer"}/>
                 <OldSchoolMenuLink to="/Projets" label="Mes projets" icon={"book"}/>
               {/*

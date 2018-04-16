@@ -50,15 +50,24 @@ class Grille extends Component{
     })
   }
 
-  /* Est appelé lors d'un changement de valeur*/
-  changeValue(attr, value) {
-    this.setState({
-      [attr]: value
+  actviteAcquiseWithProject(idProjet, activite) {
+    let countAcquis = 0;
+    activite.competences.map((competence) => {
+      competence.Illustrer.map((illustrer) => {
+        if (illustrer.Illustration.Projet.id === idProjet) {
+          countAcquis += 1;
+        }
+      })
     })
+    if (countAcquis >= (activite.competences.length / 2)) {
+      return true;
+    }
+
+
   }
 
   render() {
-
+    let codeProjetTable = null;
     return (
         <div key={'grille'}>
 
@@ -108,6 +117,7 @@ class Grille extends Component{
                 </thead>
 
                 <tbody>
+                {/*Toutes les activites*/}
                 <tr style={{
                   border: 'solid black 2px',
                   borderCollapse: 'collapse'
@@ -142,6 +152,66 @@ class Grille extends Component{
                   })}
 
                 </tr>
+                {this.props.projets.map((projet, indexProjet) => {
+                  codeProjetTable = projet.id;
+                  return (
+                      <tr style={{
+                        border: 'solid black 2px',
+                        borderCollapse: 'collapse'
+                      }} key={projet.id}>
+                        <td style={{
+                          border: 'solid black 2px',
+                          borderCollapse: 'collapse'
+                        }}>{projet.nom}
+                        </td>
+
+                        {this.state.activitesObligatoire.map(
+                            (activite, index) => {
+                              return (<td key={index} style={{
+                                border: 'solid black 2px',
+                                borderCollapse: 'collapse'
+                              }}>
+                                {/*<Link to={'/E4/ActivitesObligatoires/'}><Icon center
+                                                                          large>check</Icon></Link>*/}
+                              </td>)
+
+                            })}
+
+                        {this.state.activites.map((activite, index) => {
+                          if (this.actviteAcquiseWithProject(codeProjetTable,
+                                  activite)) {
+                            return (<td key={index} style={{
+                              border: 'solid black 2px',
+                              borderCollapse: 'collapse'
+                            }}
+                                /*onClick={this.props.changeValue('projetSelected',codeProjetTable)}*/
+                            >
+                              {activite.nbCompetencesAcquises > 0 ? <Link
+                                  to={'/E4/Activites/' + activite.code}><Icon
+                                  center
+                                  large>check</Icon></Link> : null}
+                            </td>)
+                          } else {
+                            return (<td key={index} style={{
+                              border: 'solid black 2px',
+                              borderCollapse: 'collapse'
+                            }}>
+
+                            </td>)
+
+                          }
+                        })}
+
+                      </tr>
+
+                  )
+                })}
+
+
+
+
+
+
 
                 </tbody>
               </Table>
