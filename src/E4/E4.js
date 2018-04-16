@@ -1,6 +1,6 @@
 import React, {Component, ReactDOM} from 'react';
 
-import {Row, Col, Card, Navbar, NavItem, SideNav} from 'react-materialize';
+import {Row, Col, Card, Navbar, NavItem, Input} from 'react-materialize';
 import {Route, Switch} from 'react-router-dom'
 import Competences from './Competences';
 import Grille from "./Grille";
@@ -23,6 +23,7 @@ class E4 extends Component{
 
       acquiseOnly: false,
       projetSelected: null,
+      hideSearch: false,
     }
   }
 
@@ -167,24 +168,32 @@ class E4 extends Component{
             <Route render={() => (
                 <Row>
 
-                  <Card className={'col m5 col s12 E4composant'}>
+                  <Card className={this.state.hideSearch ? 'hide'
+                      : 'col m5 col s12 E4composant '}>
                     <Activites
                         changeValue={this.changeValue.bind(this)}
                         codeActivite={this.state.codeActivite}
                         _activites={this.state._activites}
                         projets={this.state.projets}
                         CompAcquisesOnly={this.state.acquiseOnly}
+                        hideSearch={this.state.hideSearch}
                     />
 
                   </Card>
 
-
-                  <Col m={7} s={12} className={'E4composant'}>
+                  {this.state.hideSearch ? <Col m={1}/> : null}
+                  <Col m={this.state.hideSearch ? 10 : 7} s={12}
+                       className={'E4composant'}>
                     <h3 className={'center-align'}>Liste de compétences</h3>
+                    <Input m={5} s={12} name='group1' key={2} className={'red'}
+                           type='checkbox'
+                           label='Cacher les activités'
+                           checked={this.props.CompAcquisesOnly}
+                           onChange={(e) => (this.setState(
+                               {hideSearch: !this.state.hideSearch}))}/>
+                    <br/>
                     <hr/>
-                    {/*
-                            {alert(this.state.codeActivite)}
-*/}
+
                     {this.state.codeActivite && this.state._activites.length > 0
                         ? <Competences
                             changeValue={this.changeValue.bind(this)}
@@ -192,7 +201,7 @@ class E4 extends Component{
                             codeAct={this.state.codeActivite}
                             acquiseOnly={this.state.acquiseOnly}
                             projetSelected={this.state.projetSelected}
-
+                            hideSearch={this.state.hideSearch}
                         />
                         : <blockquote style={{
                           marginLeft: '3%',
@@ -200,6 +209,7 @@ class E4 extends Component{
                         }}>Sélectionnez une activité</blockquote>}
 
                   </Col>
+                  {this.state.hideSearch ? <Col m={1}/> : null}
 
                 </Row>
             )}/>

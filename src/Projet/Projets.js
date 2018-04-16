@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import { Row, Card, Col, ProgressBar, Collection}from 'react-materialize'
+import {
+  Row,
+  Card,
+  Col,
+  ProgressBar,
+  Collection,
+  MediaBox
+} from 'react-materialize'
 import {Link} from 'react-router-dom'
 import Appearances from "../Enumeration/Appearance";
 
@@ -56,7 +63,7 @@ class Projets extends Component{
     render(){
 
         return(
-            <Row>
+            <Row style={{marginBottom: '7%'}}>
 
                 <Card  className={'col s4'} >
                     <h3>Mes projets</h3>
@@ -84,15 +91,27 @@ class Projets extends Component{
 
                 </Card>
                 <Col s={8}>
-                    {this.state.selected ?
-                        <Card className={Appearances.backgroundColor} textClassName={Appearances.TxtColor+'-text'} >
+                    {this.state.selected ? <div>
+                          <Card className={Appearances.backgroundColor} textClassName={Appearances.TxtColor+'-text'} >
                             <h3>{this.state.selected.nom}</h3>
                             <h6><b>Contexte : </b></h6>
                             <p>{this.state.selected.contexte}</p>
                             <hr/>
                             <h6><b>Description : </b></h6>
                             <p style={{whiteSpace: 'pre'}}>{this.state.selected.description}</p>
-                        </Card>
+                            <hr/>
+                            <br/> <p>Image du projet :</p><br/>
+
+                            <MediaBox
+                                src={"/img/projet/projet"
+                                + this.state.selected.id
+                                + ".png"}
+                                caption={"screen du projet "
+                                + this.state.selected.nom}
+                                width="500"/>
+                          </Card>
+
+                        </div>
                     :<p>Sélectionnez un projet</p>}
                 </Col>
 
