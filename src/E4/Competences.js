@@ -204,7 +204,7 @@ class Competences extends Component{
                                         le PDF</a></p>
                                     </div>
 
-                                    : <p>pas de PDF</p>}
+                                    : <p>pas de PDF : {Illust.Illustration.havePDF}</p>}
 
 
                                 <Collapsible popout>
