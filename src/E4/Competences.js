@@ -197,7 +197,7 @@ class Competences extends Component{
                                     : null}
 
                                 {/** PDF */}
-                                {Illust.Illustration.havePDF === '1' ? <div>
+                                {Illust.Illustration.havePDF == '1' ? <div>
                                       <p><a target="_blank"
                                             href={"/img/illustration/illustration"
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
