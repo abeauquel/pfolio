@@ -212,7 +212,7 @@ class Competences extends Component{
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</a></p>
                                     </div>
-                                    : null}
+                                    : <p>pas de pdf</p>}
 
                                 <Collapsible popout>
                                   <CollapsibleItem
