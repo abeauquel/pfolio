@@ -10,7 +10,6 @@ import {
   Pagination
 } from 'react-materialize';
 import Appearances from "../Enumeration/Appearance";
-import {Document, Page} from 'react-pdf';
 let lodash = require('lodash');
 
 const msgNonApprisProjet = (Illust, idProjet) => {
@@ -35,8 +34,6 @@ class Competences extends Component{
       competences: [],
       test: 0,
       activite: null,
-      numPagesPDF: null,
-      pageNumberPDF: 1,
     }
   }
 
@@ -52,10 +49,6 @@ class Competences extends Component{
     }
 
     this.loadCompetences(this.props.codeAct, this.props.projetSelected)
-  }
-
-  onDocumentLoad = ({numPagesPDF}) => {
-    this.setState({numPagesPDF: numPagesPDF});
   }
 
   handleLoad(event) {
@@ -139,10 +132,8 @@ class Competences extends Component{
     return str
   }
 
-  handleChangePagePDF
 
   render() {
-    const {pageNumberPDF, numPagesPDF} = this.state;
     return (
         <Row>
 
@@ -212,7 +203,7 @@ class Competences extends Component{
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</a></p>
                                     </div>
-                                    : null}
+                                    : <p>pas de PDF</p>}
 
                                 <Collapsible popout>
                                   <CollapsibleItem
