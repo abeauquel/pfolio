@@ -42,11 +42,17 @@ class ActivitesObligatoire extends Component {
           id: 1,
           libelle: "Activités réalisé grâce aux projets ( voir portfolio)"
         },
-        {id: 2, libelle: "à venir "},
-        {id: 3, libelle: "Twitter <3<3"},
+        {
+          id: 2,
+          libelle: " Lors d'un traveau pratique en groupe de deux, j'ai eu l'occasion d'installer OCS-GLPI sur une machine virtuel debian."
+        },
+        {
+          id: 3,
+          libelle: "Durant mon stage de deuxième année j'ai pu mettre en place une veille en m'inspirant des outils utilisés par mon tuteur de stage. Voir l'onglet veille technologique"
+        },
         {
           id: 4,
-          libelle: " Ce portfolio fait office de document relatif à la production ? "
+          libelle: " Voir les activités  en rapport avec le terme 'documentation' "
         },
       ],
     }
