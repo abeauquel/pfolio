@@ -10,6 +10,7 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
+  Redirect
 } from 'react-router-dom'
 
 import E4 from "./E4/E4";

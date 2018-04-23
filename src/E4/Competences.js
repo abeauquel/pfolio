@@ -211,11 +211,15 @@ class Competences extends Component{
                                             href={"/img/illustration/illustration"
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</a></p>*/}
-                                      <p><Link target="_blank"
-                                               to={public_url
+                                      <p><a target="_blank"
+                                            href={public_url
                                                + "illustration/illustration"
-                                               + Illust.Illustration.id + ".pdf"}>Télécharger
-                                        le PDF</Link></p>
+                                            + Illust.Illustration.id + ".pdf"}
+                                            download={public_url
+                                            + "illustration/illustration"
+                                            + Illust.Illustration.id + ".pdf"}
+                                      >Télécharger
+                                        le PDF</a></p>
                                     </div>
 
                                     : null}

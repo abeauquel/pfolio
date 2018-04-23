@@ -2,16 +2,15 @@ import React from 'react';
 import {Container}from 'react-materialize'
 import {Row, Col} from 'react-materialize';
 import ToastNotifcation from "./Script/ToastNotifcation";
-
+import DownloadLink from "react-download-link";
 
 
 const NotFound = ({ location }) => (
     <Container>
-      {location.pathname.includes("/img/") ? <p>Je devrais pas être ici</p>
-          : null}
+
 
         <h3>404 Not Found</h3>
-        <Row>
+      <Row style={{marginBottom: '50%'}}>
 
             <ToastNotifcation
                 message={"Erreur page "+location.pathname+" introuvable"}
@@ -22,7 +21,9 @@ const NotFound = ({ location }) => (
                 <p>Le lien vers <b><code>{location.pathname}</code></b> n'a pas été trouvé.
                     Peut être qu'il n'existe pas</p>
             </Col>
-        </Row>
+
+
+      </Row>
 
 
     </Container>
