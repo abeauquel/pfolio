@@ -7,7 +7,7 @@ import ToastNotifcation from "./Script/ToastNotifcation";
 
 const NotFound = ({ location }) => (
     <Container>
-      {location.includes("/img/") ? <p>Je devrais pas être ici</p>
+      {location.pathname.includes("/img/") ? <p>Je devrais pas être ici</p>
           : null}
 
         <h3>404 Not Found</h3>
