@@ -9,7 +9,7 @@ import {
   ProgressBar,
   Pagination
 } from 'react-materialize';
-import {Link} from 'react-router-dom';
+import {SauveurDePDF} from '../Enumeration/SauveurDePDF';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 
@@ -207,19 +207,11 @@ class Competences extends Component{
 
                                 {/** PDF */}
                                 {Illust.Illustration.havePDF === '1' ? <div>
-                                      {/*<p><a target="_blank"
-                                            href={"/img/illustration/illustration"
-                                            + Illust.Illustration.id + ".pdf"}>Télécharger
-                                        le PDF</a></p>*/}
+
                                       <p><a target="_blank"
-                                            href={public_url
-                                               + "illustration/illustration"
-                                            + Illust.Illustration.id + ".pdf"}
-                                            download={public_url
-                                            + "illustration/illustration"
-                                            + Illust.Illustration.id + ".pdf"}
-                                      >Télécharger
-                                        le PDF</a></p>
+                                            href={SauveurDePDF['illustration'
+                                            + Illust.Illustration.id]}
+                                      >Lien google drive du PDF</a></p>
                                     </div>
 
                                     : null}
