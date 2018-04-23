@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 
+
 const msgNonApprisProjet = (Illust, idProjet) => {
   if (!idProjet) {
     return false
@@ -135,6 +136,13 @@ class Competences extends Component{
 
 
   render() {
+    let public_url = 'https://abeauquel-pfolio.herokuapp.com/img/';
+
+    if (process.env.NODE_ENV === 'development') {
+      public_url = 'http://localhost:3000/img/'
+    }
+    console.log(public_url);
+
     return (
         <Row>
 
@@ -204,7 +212,8 @@ class Competences extends Component{
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</a></p>*/}
                                       <p><Link target="_blank"
-                                               to={"/img/illustration/illustration"
+                                               to={public_url
+                                               + "illustration/illustration"
                                                + Illust.Illustration.id + ".pdf"}>Télécharger
                                         le PDF</Link></p>
                                     </div>
