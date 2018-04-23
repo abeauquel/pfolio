@@ -9,6 +9,7 @@ import {
   ProgressBar,
   Pagination
 } from 'react-materialize';
+import {Link} from 'react-router-dom';
 import Appearances from "../Enumeration/Appearance";
 let lodash = require('lodash');
 
@@ -198,10 +199,14 @@ class Competences extends Component{
 
                                 {/** PDF */}
                                 {Illust.Illustration.havePDF === '1' ? <div>
-                                      <p><a target="_blank"
+                                      {/*<p><a target="_blank"
                                             href={"/img/illustration/illustration"
                                             + Illust.Illustration.id + ".pdf"}>Télécharger
-                                        le PDF</a></p>
+                                        le PDF</a></p>*/}
+                                      <p><Link target="_blank"
+                                               to={"/img/illustration/illustration"
+                                               + Illust.Illustration.id + ".pdf"}>Télécharger
+                                        le PDF</Link></p>
                                     </div>
 
                                     : null}
