@@ -43,9 +43,9 @@ class App extends Component{
                         <Route path="/E6/" component={E6}/>
                         <Route path="/Projets" component={Projets}/>
                       <Route path={"/veilletech"} component={Veille}/>
-                      {/*
+
                         <Route component={NotFound}/>
-*/}
+
                     </Switch>
 
                     <Myfooter/>
