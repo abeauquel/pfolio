@@ -15,7 +15,7 @@ class E6 extends Component{
                 <p>Projet 2 : EasyFood Android</p>
                 <small style={{marginBottom: '50%'}}>Pour plus d'information,
                   direction l'onglet justification des activités ou projet et
-                  sélectionné le projet correspondant
+                  sélectionné le projet correspondant.
                 </small>
 
 
